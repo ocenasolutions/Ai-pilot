@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "AI Pilot",
+  "version": "1.0.0",
+  "description": "Lightweight AI-driven page control. No frameworks, no bundlers, no bloat.",
+
+  "permissions": ["storage", "activeTab", "scripting", "sidePanel", "tabs", "declarativeNetRequest", "notifications", "alarms"],
+  "host_permissions": ["<all_urls>"],
+
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "side_panel": {
+    "default_path": "sidebar.html"
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "action": {
+    "default_title": "Open AI Pilot",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
